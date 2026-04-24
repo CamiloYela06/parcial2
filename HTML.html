@@ -2,20 +2,38 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Polígono con Circunferencias</title>
+<title>Rasterización de Polígono</title>
 
 <style>
 body{
     font-family: Arial;
-    text-align: center;
+    text-align:center;
 }
 
 canvas{
     border:1px solid black;
     margin-top:20px;
 }
+
+button{
+    margin-top:10px;
+    padding:8px 12px;
+}
 </style>
 
 </head>
 
 <body>
+
+<h2>Polígono aleatorio con circunferencias</h2>
+
+<button onclick="generarNuevo()">Generar nuevo polígono</button>
+
+<p id="info"></p>
+
+<canvas id="canvas" width="500" height="500"></canvas>
+
+<script src="script.js"></script>
+
+</body>
+</html>

@@ -14,7 +14,11 @@ function drawPixel(ctx, x, y, color = "#000000") {
     ctx.fillRect(Math.floor(x), Math.floor(y), 1, 1);
 }
 
-//Implementación del algoritmo de Bresenham para líneas.
+/*Implementación del algoritmo de Bresenham para líneas.
+Soporta todos los octances:
+m > 1
+m < 0
+m < -1 */
 function bresenhamLine(x0, y0, x1, y1, color ="#000000") {
     // Desarrollo del estudiante
     let dx = Math.abs(x1 - x0);
@@ -22,7 +26,11 @@ function bresenhamLine(x0, y0, x1, y1, color ="#000000") {
 
     let sx = (x0 < x1) ? 1 : -1; // dirección en X
     let sy = (y0 < y1) ? 1 : -1; // dirección en Y
-
+    /*
+    Parámetro de decisión (error acumulado).
+    Representa qué tan lejos está el pixel actual
+    de la línea ideal continua.
+    */
     let err = dx - dy;
 
     while (true) {
@@ -31,7 +39,11 @@ function bresenhamLine(x0, y0, x1, y1, color ="#000000") {
 
         // condición de parada
         if (x0 === x1 && y0 === y1) break;
-
+        /*
+        Se multiplica por 2 para evitar trabajar con fracciones.
+        Permite decidir si el siguiente paso debe ser horizontal,
+        vertical o diagonal.
+        */
         let e2 = 2 * err;
 
         // movimiento en X
@@ -127,33 +139,36 @@ function midpointCircle(cx, cy, r, color = "#000000") {
  */
 function main() {
 
+    // Limpiar canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     // Número aleatorio entre 5 y 10
     let sides = Math.floor(Math.random() * 6) + 5;
 
-    // Centro del canvas
     let cx = canvas.width / 2;
     let cy = canvas.height / 2;
 
-    // Radio del polígono
     let R = 150;
 
-    // Obtener vértices
     let vertices = getPolygonVertices(cx, cy, sides, R);
 
-    // Dibujar polígono
-    drawPolygon(vertices, "#000000");
+    drawPolygon(vertices);
 
     // Radio de los círculos (R/4)
     let r = Math.floor(R / 4);
 
-    // Dibujar círculos en cada vértice
     vertices.forEach(v => {
-        midpointCircle(v.x, v.y, r, "#000000");
+        midpointCircle(v.x, v.y, r);
     });
 
-    console.log("Número de lados:", sides);
+    // Mostrar info
+    document.getElementById("info").innerText =
+        "Número de lados: " + sides;
+}
+
+// BOTON
+function generarNuevo(){
+    main();
 }
 
 
