@@ -84,3 +84,40 @@ function drawPolygon(vertices, color = "#000000") {
     }
 }
 
+//Dibujar los 8 puntos simetricos de la circunferencia (8 octantes)
+function plotCirclePoints(cx, cy, x, y, color) {
+
+    let points = [
+        [cx + x, cy + y], [cx - x, cy + y],
+        [cx + x, cy - y], [cx - x, cy - y],
+        [cx + y, cy + x], [cx - y, cy + x],
+        [cx + y, cy - x], [cx - y, cy - x]
+    ];
+
+    points.forEach(p => drawPixel(ctx, p[0], p[1], color));
+}
+
+/**
+ * Algoritmo de punto medio para circunferencias.
+ */
+function midpointCircle(cx, cy, r, color = "#000000") {
+
+    let x = 0;
+    let y = r;
+    let p = 1 - r;
+
+    while (x <= y) {
+
+        plotCirclePoints(cx, cy, x, y, color);
+
+        if (p < 0) {
+            p += 2 * x + 3;
+        } else {
+            p += 2 * (x - y) + 5;
+            y--;
+        }
+
+        x++;
+    }
+}
+
