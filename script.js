@@ -121,3 +121,42 @@ function midpointCircle(cx, cy, r, color = "#000000") {
     }
 }
 
+
+/**
+ * FUNCIÓN PRINCIPAL
+ */
+function main() {
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Número aleatorio entre 5 y 10
+    let sides = Math.floor(Math.random() * 6) + 5;
+
+    // Centro del canvas
+    let cx = canvas.width / 2;
+    let cy = canvas.height / 2;
+
+    // Radio del polígono
+    let R = 150;
+
+    // Obtener vértices
+    let vertices = getPolygonVertices(cx, cy, sides, R);
+
+    // Dibujar polígono
+    drawPolygon(vertices, "#000000");
+
+    // Radio de los círculos (R/4)
+    let r = Math.floor(R / 4);
+
+    // Dibujar círculos en cada vértice
+    vertices.forEach(v => {
+        midpointCircle(v.x, v.y, r, "#000000");
+    });
+
+    console.log("Número de lados:", sides);
+}
+
+
+// Ejecutar automáticamente
+window.onload = main;
+
