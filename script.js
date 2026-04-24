@@ -67,6 +67,10 @@ function getPolygonVertices(centerX, centerY, sides, radius) {
     let vertices = [];
 
     for (let i = 0; i < sides; i++) {
+                /*
+        Se calcula el ángulo correspondiente a cada vértice
+        usando división uniforme del círculo (2π).
+        */
 
         let angle = (2 * Math.PI * i) / sides;
 
@@ -88,7 +92,9 @@ function getPolygonVertices(centerX, centerY, sides, radius) {
 function drawPolygon(vertices, color = "#000000") {
 
     for (let i = 0; i < vertices.length; i++) {
-
+        /*
+        Se calcula el angulo corespondiente a cada vertice usando division uniforme del circulo (2PI)
+        */
         let p1 = vertices[i];
         let p2 = vertices[(i + 1) % vertices.length];
 
@@ -116,6 +122,10 @@ function midpointCircle(cx, cy, r, color = "#000000") {
 
     let x = 0;
     let y = r;
+        /*
+    Parámetro de decisión inicial.
+    Evalúa si el punto medio está dentro o fuera del círculo.
+    */
     let p = 1 - r;
 
     while (x <= y) {
