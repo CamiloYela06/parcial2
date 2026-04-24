@@ -184,4 +184,5 @@ function generarNuevo(){
 
 // Ejecutar automáticamente
 window.onload = main;
+// :)
 
